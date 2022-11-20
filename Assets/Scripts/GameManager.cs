@@ -1,19 +1,26 @@
-using System.Collections;
-
 using UnityEngine;
 
 namespace Matkanoid {
 
+    using States;
+
     public class GameManager : MonoBehaviour {
 
-        [SerializeField] Ball _ball;
-        [SerializeField] Vector2 _startVelocity;
+        [SerializeField] Object _startState;
 
-        void OnEnable() => StartCoroutine(StartGame());
+        IState startState => _startState.As<IState>();
+        StateMachine _stateMachine;
 
-        IEnumerator StartGame() {
-            yield return new WaitForFixedUpdate();
-            _ball.GetComponent<Rigidbody2D>().velocity = _startVelocity;
+        void OnValidate() => _startState = startState as Object;
+
+        void OnEnable() {
+            _stateMachine = new StateMachine();
+            _stateMachine.currentState = startState;
+        }
+
+        void OnDisable() {
+            _stateMachine.currentState = null;
+            _stateMachine = null;
         }
     }
 }
