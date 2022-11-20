@@ -963,7 +963,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ball: {fileID: 990270368}
-  _startVelocity: {x: 3, y: 3}
+  _voidEvent: {fileID: 7146381723366123369}
+  _ballStartVelocity: {x: 3, y: 3}
 --- !u!114 &441684118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3427,3 +3428,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76b07d1f405bc4a1da266578764ee08a, type: 3}
+--- !u!114 &7146381723366123369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5287630636819376366, guid: 76b07d1f405bc4a1da266578764ee08a, type: 3}
+  m_PrefabInstance: {fileID: 7146381723366123368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969477a5226f64cf3a1f86b8e164a75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
