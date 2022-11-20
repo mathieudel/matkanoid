@@ -299,6 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 4071284710058148130}
   _moveArea: {fileID: 0}
+  _maxSpeed: 10
 --- !u!1 &8020380400210742342
 GameObject:
   m_ObjectHideFlags: 0

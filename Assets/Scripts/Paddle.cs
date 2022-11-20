@@ -1,5 +1,3 @@
-using System.Collections;
-
 using UnityEngine;
 
 namespace Matkanoid {
@@ -8,16 +6,20 @@ namespace Matkanoid {
 
         [SerializeField] Collider2D _collider;
         [SerializeField] BoxCollider2D _moveArea;
+        [SerializeField] float _maxSpeed;
 
-        public void SetPosition(Vector3 position) => StartCoroutine(UpdatePosition(position));
+        Vector2 _velocity;
+        public Vector2 velocity {
+            get => _velocity;
+            set => _velocity = Mathf.Min(value.magnitude, _maxSpeed) * value.normalized;
+        }
 
-        IEnumerator UpdatePosition(Vector3 position) {
-            yield return new WaitForFixedUpdate();
+        void FixedUpdate() {
             var moveBounds = _moveArea.bounds;
             var bounds = _collider.bounds;
-            bounds.center = position;
+            bounds.center = transform.position + (Vector3) (velocity * Time.fixedDeltaTime);
 
-            transform.position = position
+            transform.position = bounds.center
                 + Vector3.Max(Vector3.zero, moveBounds.min - bounds.min)
                 - Vector3.Max(Vector3.zero, bounds.max - moveBounds.max);
         }

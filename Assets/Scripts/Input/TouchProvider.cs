@@ -2,7 +2,9 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace Matkanoid {
+namespace Matkanoid.Input {
+
+  using Input = UnityEngine.Input;
 
   public class TouchProvider : ITouchProvider {
 

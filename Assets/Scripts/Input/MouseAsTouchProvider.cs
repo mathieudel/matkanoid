@@ -2,7 +2,9 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace Matkanoid {
+namespace Matkanoid.Input {
+
+  using Input = UnityEngine.Input;
 
   // Just enough logic to emulate touches in editor
   public class MouseAsTouchProvider : ITouchProvider {
