@@ -1,0 +1,12 @@
+# Blacklist everything
+*
+!*/
+
+# Whitelist what we need
+!.gitignore
+!Assets/**
+!Packages/**
+!ProjectSettings/**
+
+# Ignore all files named .DS_Store
+**/.DS_Store
