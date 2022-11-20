@@ -1,3 +1,5 @@
+using System;
+
 using UnityEngine;
 
 namespace Matkanoid {
@@ -7,6 +9,10 @@ namespace Matkanoid {
         [SerializeField] Breakable _breakable;
         [SerializeField] Scorable _scorable;
 
+        public bool isBroken => _breakable.isBroken;
+
+        public event Action<Brick> broken;
+
         void OnValidate() => _breakable ??= GetComponent<Breakable>();
 
         void OnEnable() => _breakable.broken += OnBroken;
@@ -15,6 +21,7 @@ namespace Matkanoid {
 
         void OnBroken(Breakable damageable) {
             _scorable.NotifyScored();
+            broken?.Invoke(this);
             Destroy(gameObject);
         }
     }

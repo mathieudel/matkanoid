@@ -11,6 +11,8 @@ namespace Matkanoid {
 
         public event Action<Breakable> broken;
 
+        public bool isBroken => health <= 0;
+
         void OnCollisionEnter2D(Collision2D collision) {
             if (_health == 0) { return; }
 
