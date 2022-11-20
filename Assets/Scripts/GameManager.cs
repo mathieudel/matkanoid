@@ -1,34 +1,26 @@
-using System.Collections;
-
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Matkanoid {
 
+    using States;
+
     public class GameManager : MonoBehaviour {
 
-        [SerializeField] Ball _ball;
-        [SerializeField] TriggerEvent2D _voidEvent;
-        [SerializeField] Vector2 _ballStartVelocity;
+        [SerializeField] Object _startState;
+
+        IState startState => _startState.As<IState>();
+        StateMachine _stateMachine;
+
+        void OnValidate() => _startState = startState as Object;
 
         void OnEnable() {
-            _voidEvent.entered += OnEnteredVoid;
-            StartCoroutine(StartGame());
+            _stateMachine = new StateMachine();
+            _stateMachine.currentState = startState;
         }
 
-        void OnDisable() => _voidEvent.entered -= OnEnteredVoid;
-
-        void OnEnteredVoid(TriggerEvent2D trigger, Collider2D collider) {
-            if (collider.gameObject == _ball.gameObject) {
-                ResetGame();
-            }
+        void OnDisable() {
+            _stateMachine.currentState = null;
+            _stateMachine = null;
         }
-
-        IEnumerator StartGame() {
-            yield return new WaitForFixedUpdate();
-            _ball.GetComponent<Rigidbody2D>().velocity = _ballStartVelocity;
-        }
-
-        void ResetGame() => SceneManager.LoadScene(gameObject.scene.name);
     }
 }
