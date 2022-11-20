@@ -5,6 +5,7 @@ namespace Matkanoid {
     public class Brick : MonoBehaviour {
 
         [SerializeField] Breakable _breakable;
+        [SerializeField] Scorable _scorable;
 
         void OnValidate() => _breakable ??= GetComponent<Breakable>();
 
@@ -12,6 +13,9 @@ namespace Matkanoid {
 
         void OnDisable() => _breakable.broken -= OnBroken;
 
-        void OnBroken(Breakable damageable) => Destroy(gameObject);
+        void OnBroken(Breakable damageable) {
+            _scorable.NotifyScored();
+            Destroy(gameObject);
+        }
     }
 }

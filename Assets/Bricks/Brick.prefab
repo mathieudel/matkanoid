@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 1127854966148533697}
   - component: {fileID: 9176957662810303368}
   - component: {fileID: 2837283742077637336}
+  - component: {fileID: 4364990473161888995}
   m_Layer: 0
   m_Name: Brick
   m_TagString: Untagged
@@ -125,7 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e8f4156ef034503a54122124d3efdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageable: {fileID: 2837283742077637336}
+  _breakable: {fileID: 2837283742077637336}
+  _scorable: {fileID: 4364990473161888995}
 --- !u!114 &2837283742077637336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,9 +141,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _broken:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!114 &4364990473161888995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5504168488842543159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7502e1a7f1f014f88878deb7fbeb5557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points: 0
 --- !u!1001 &7565845681826426050
 PrefabInstance:
   m_ObjectHideFlags: 0
