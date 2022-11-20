@@ -15,7 +15,8 @@ namespace Matkanoid.States {
         }
 
         public void Stop() {
-            _losePanel.gameObject.SetActive(false);
+            if (!_losePanel.IsDestroyed()) { _losePanel.gameObject.SetActive(false); }
+
             _restartButton.onClick.RemoveListener(OnRestartClicked);
         }
 

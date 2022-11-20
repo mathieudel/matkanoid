@@ -9,5 +9,7 @@ namespace Matkanoid {
             if (@object is GameObject gameObject) { return gameObject.GetComponent<T>(); }
             return default;
         }
+
+        public static bool IsDestroyed(this Object @object) => @object == null;
     }
 }

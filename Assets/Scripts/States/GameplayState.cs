@@ -38,8 +38,9 @@ namespace Matkanoid.States {
         }
 
         public void Stop() {
-            _player.enabled = false;
-            _ball.velocity = Vector2.zero;
+            if (!_player.IsDestroyed()) { _player.enabled = false; }
+            if (!_ball.IsDestroyed()) { _ball.velocity = Vector2.zero; }
+
             _voidTrigger.entered -= OnVoidEntered;
             foreach (var wall in _walls) {
                 wall.destroyed -= OnWallDestroyed;
