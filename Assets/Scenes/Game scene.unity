@@ -1732,6 +1732,8 @@ MonoBehaviour:
   _voidTrigger: {fileID: 7146381723366123369}
   _walls:
   - {fileID: 1038432312}
+  - {fileID: 64464427}
+  - {fileID: 899476337}
   _winState: {fileID: 1812382280}
   _loseState: {fileID: 99428405}
 --- !u!114 &857807902 stripped
