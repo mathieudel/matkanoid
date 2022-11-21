@@ -6,6 +6,8 @@ namespace Matkanoid {
 
     public class Ball : MonoBehaviour {
 
+        [SerializeField] AnimationCurve _bounceRandomnessByHorizontalSpeed;
+
         public Vector2 velocity {
             get => _rigidBody.velocity;
             set {
@@ -21,6 +23,13 @@ namespace Matkanoid {
         IEnumerator SetVelocity(Vector2 velocity) {
             yield return new WaitForFixedUpdate();
             _rigidBody.velocity = velocity;
+        }
+
+        void OnCollisionEnter2D(Collision2D collision) {
+            var speedSign = Mathf.Approximately(velocity.x, 0f) ? 1f : Mathf.Sign(velocity.x);
+            var bounceRandomness = _bounceRandomnessByHorizontalSpeed.Evaluate(Mathf.Abs(velocity.x));
+            var force = Random.Range(0f, bounceRandomness) * Vector2.right * speedSign;
+            _rigidBody.AddForce(force, ForceMode2D.Impulse);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Matkanoid {
 
         public static void PlayRandomOneShot(this AudioSource audioSource, AudioClipBank audioClipBank) {
             if (audioClipBank.TryGetRandom(out var clip)) {
-              audioSource.PlayOneShot(clip);
+                audioSource.PlayOneShot(clip);
             }
         }
     }

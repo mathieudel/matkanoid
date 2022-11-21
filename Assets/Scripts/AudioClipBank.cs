@@ -17,5 +17,5 @@ namespace Matkanoid {
         public IEnumerator<AudioClip> GetEnumerator() => ((IEnumerable<AudioClip>) _audioClips).GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-  }
+    }
 }
