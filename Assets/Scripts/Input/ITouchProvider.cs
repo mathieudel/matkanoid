@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Matkanoid.Input {
 
-  public interface ITouchProvider {
+    public interface ITouchProvider {
 
-    int touchCount { get; }
+        int touchCount { get; }
 
-    IReadOnlyList<Touch> touches { get; }
-  }
+        IReadOnlyList<Touch> touches { get; }
+    }
 }

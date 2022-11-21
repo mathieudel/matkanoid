@@ -1,25 +1,24 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace Matkanoid.States {
 
     public class WinState : MonoBehaviour, IState {
 
-        [SerializeField] RectTransform _winPanel;
-        [SerializeField] Button _restartButton;
+        [SerializeField] Popup _winPopup;
 
         public void Run(StateMachine stateMachine) {
-            _restartButton.onClick.AddListener(OnRestartClicked);
-            _winPanel.gameObject.SetActive(true);
+            _winPopup.validated += OnWinPopupValidated;
+            _winPopup.Open();
         }
 
         public void Stop() {
-            if (!_winPanel.IsDestroyed()) { _winPanel.gameObject.SetActive(false); }
-
-            _restartButton.onClick.RemoveListener(OnRestartClicked);
+            _winPopup.validated += OnWinPopupValidated;
+            if (!_winPopup.IsDestroyed()) {
+                _winPopup.Close();
+            }
         }
 
-        void OnRestartClicked() => SceneManager.LoadScene(gameObject.scene.name);
+        void OnWinPopupValidated(Popup popup) => SceneManager.LoadScene(gameObject.scene.name);
     }
 }
