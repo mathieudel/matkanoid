@@ -6,20 +6,20 @@ namespace Matkanoid.States {
 
     public class LoseState : MonoBehaviour, IState {
 
-        [SerializeField] RectTransform _losePanel;
-        [SerializeField] Button _restartButton;
+        [SerializeField] Popup _losePopup;
 
         public void Run(StateMachine stateMachine) {
-            _restartButton.onClick.AddListener(OnRestartClicked);
-            _losePanel.gameObject.SetActive(true);
+            _losePopup.validated += OnLosePopupValidated;
+            _losePopup.Open();
         }
 
         public void Stop() {
-            if (!_losePanel.IsDestroyed()) { _losePanel.gameObject.SetActive(false); }
-
-            _restartButton.onClick.RemoveListener(OnRestartClicked);
+            _losePopup.validated += OnLosePopupValidated;
+            if (!_losePopup.IsDestroyed()) {
+                _losePopup.Close();
+            }
         }
 
-        void OnRestartClicked() => SceneManager.LoadScene(gameObject.scene.name);
+        void OnLosePopupValidated(Popup popup) => SceneManager.LoadScene(gameObject.scene.name);
     }
 }
